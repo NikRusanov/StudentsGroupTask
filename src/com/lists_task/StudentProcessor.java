@@ -9,15 +9,14 @@ import java.util.TreeSet;
 class StudentProcessor {
    private Set<Student> group1;
    private Set<Student> group2;
-   private int size1 = 0 ;
-   private int size2 = 0 ;
-
    StudentProcessor() {
        group1 = new TreeSet<>();
        group2 = new TreeSet<>();
    }
     public  void sortInGroup (List<Student> students) {
 
+       int size1 = group1.size();
+        int size2 = group2.size();
         for (var student : students) {
 
             if(size1 >= 10 && size2 >= 10) {
@@ -47,9 +46,7 @@ class StudentProcessor {
     }
 
     private  long getCount(ForeignLanguage fl, @NotNull Set<Student> students) {
-        return students.stream().filter((s) -> {
-            return s.getLang() == fl;
-        }).count();
+        return students.stream().filter((s) -> s.getLang() == fl).count();
     }
 
     @Override

@@ -4,5 +4,5 @@ public enum ForeignLanguage {
     EN,
     FR,
     DE,
-    CN;
+    CN,
 }
