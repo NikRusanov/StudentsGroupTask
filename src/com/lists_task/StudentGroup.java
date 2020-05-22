@@ -10,6 +10,10 @@ public class StudentGroup {
     public StudentGroup(String name) {
         students = new TreeSet<>();
         languages_count = new TreeMap<>();
+        ForeignLanguage[] fls = ForeignLanguage.values();
+        for(ForeignLanguage fl : fls) {
+            languages_count.put(fl,0);
+        }
         this.name = name ;
     }
 
@@ -17,13 +21,11 @@ public class StudentGroup {
         students.add(student);
         if(languages_count.containsKey(student.getLang())) {
             incLangCount(student.getLang());
-        } else {
-            languages_count.put(student.getLang(), 1);
         }
     }
 
     public int getLangCount(ForeignLanguage fl) {
-        return languages_count.getOrDefault(fl,0);
+        return languages_count.get(fl);
     }
 
     public void  removeStudentByFirstName(String name) {
@@ -48,17 +50,17 @@ public class StudentGroup {
 
     @Override
     public String toString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for(Student st : students) {
-            result += st.toString() + "\n";
+            result.append(st.toString()).append("\n");
         }
-        return result;
+        return result.toString();
     }
 
     public String getName() {
         return name;
     }
-    public int getSize() {
+    public int getGroupSize() {
         return  students.size();
     }
 }
